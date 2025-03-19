@@ -35,15 +35,11 @@ class NoTypo(threading.Thread):
                 current = pygetwindow.getActiveWindowTitle()
                 if i in self.list_key or i.lower() in self.list_key:
                     if i in self.special_list:
-                        pyautogui.typewrite(i)
-                        pyautogui.press("right")
-                        pyautogui.press("backspace")
+                        self.type_for_me(i)
                     else:
                         if i == '"':
                             if k == 2:
-                                pyautogui.typewrite(i)
-                                pyautogui.press("right")
-                                pyautogui.press("backspace")
+                                self.type_for_me(i)
                             else:
                                 pyautogui.typewrite(s + i, interval=0.01)
                             k = k + 1
@@ -68,10 +64,18 @@ class NoTypo(threading.Thread):
                     break
             if w == 1:
                 break
-            with pyautogui.hold("ctrl"):pyautogui.press("e")
+            with pyautogui.hold("ctrl"):
+                pyautogui.press("e")
             pyautogui.press("enter")
-            with pyautogui.hold("ctrl"):pyautogui.press("b")
+            with pyautogui.hold("ctrl"):
+                pyautogui.press("b")
             # pyautogui.click(0, currentMouseY)
+
+    @staticmethod
+    def type_for_me(i):
+        pyautogui.typewrite(i)
+        pyautogui.press("right")
+        pyautogui.press("backspace")
 
     def run(self):
         self.start_typing()
