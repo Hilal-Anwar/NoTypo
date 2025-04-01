@@ -57,6 +57,7 @@ if __name__ == '__main__':
     file_path_ = ''
     window.geometry("800x880")
     window.title("NoTypo")
+    window.wm_iconphoto(True, PhotoImage(file='Designer.png'))
     main_frame = ttk.Frame(window, padding=5)
     main_frame.pack()
     entry_frame = ttk.Frame(main_frame)
